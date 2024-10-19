@@ -2,6 +2,7 @@
 
 namespace NoHtml;
 
+include_once __DIR__ .'/render.php';
 include_once __DIR__ .'/attribute.php';
 
 class Tag
@@ -88,6 +89,7 @@ class Tag
   const noembed = "noembed";
   const noscript = "noscript";
   const object = "object";
+  const ol = "ol";
   const optgroup = "optgroup";
   const option = "option";
   const output = "output";
@@ -158,7 +160,7 @@ class Tag
     return $result;
   }
 
-  public static function tag(string $name, string $content = '', array $attrs = [], array $args = [], string $custom = '')
+  public static function tag(string $name, string|Render $content = '', array $attrs = [], array $args = [], string $custom = '')
   {
     $result = '<'
               . $name
@@ -168,11 +170,15 @@ class Tag
               . Attribute::add_attrs($args)
               . ' '
               . $custom
-              . '>'
-              . $content
-              .'</'
-              . $name
-              .'>';
+              . '>';
+
+    if(is_string($content)){
+      $result .= $content;
+    } else {
+      $result .= $content->render();
+    }
+
+    $result .= self::close($name);
     return $result;
   }
 }

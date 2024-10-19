@@ -1,10 +1,11 @@
 <?php
 namespace NoHtml;
 
+include_once __DIR__ .'/render.php';
 include_once __DIR__ .'/attribute.php';
 include_once __DIR__ .'/tag.php';
 
-class Head
+class Head extends Render
 {
   private $title = '';
   private $metas = [];

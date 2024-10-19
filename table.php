@@ -2,11 +2,12 @@
 
 namespace NoHtml;
 
+include_once __DIR__ .'/render.php';
 include_once __DIR__ .'/tag.php';
 include_once __DIR__ .'/thead.php';
 include_once __DIR__ .'/tbody.php';
 
-class Table
+class Table extends Render
 {
   private $thead = null;
   private $tbody = null;

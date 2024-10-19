@@ -2,10 +2,11 @@
 
 namespace NoHtml;
 
+include_once __DIR__ .'/render.php';
 include_once __DIR__ .'/tag.php';
 include_once __DIR__ .'/attribute.php';
 
-class Select
+class Select extends Render
 {
   private $content = '';
 

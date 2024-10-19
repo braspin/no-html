@@ -2,10 +2,11 @@
 
 namespace NoHtml;
 
+include_once __DIR__ .'/render.php';
 include_once __DIR__ .'/tag.php';
 include_once __DIR__ .'/tr.php';
 
-class TBody
+class TBody extends Render
 {
   private $content = '';
   public function __construct() 

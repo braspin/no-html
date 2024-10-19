@@ -2,11 +2,12 @@
 
 namespace NoHtml;
 
+include_once __DIR__ .'/render.php';
 include_once __DIR__ .'/tag.php';
 include_once __DIR__ .'/attribute.php';
 include_once __DIR__ .'/content.php';
 
-class Form
+class Form extends Render
 {
   private $content = '';
   public function __construct(string $action, string $method, string $classes = '', array $attrs = []) 

@@ -2,11 +2,12 @@
 
 namespace NoHtml;
 
+include_once __DIR__ .'/render.php';
 include_once __DIR__ .'/tag.php';
 include_once __DIR__ .'/attribute.php';
 include_once __DIR__ .'/content.php';
 
-class Div
+class Div extends Render
 {
   private $content = '';
   public function __construct(string $classes = '', array $attrs = []) 

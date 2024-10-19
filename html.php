@@ -1,12 +1,13 @@
 <?php
 namespace NoHtml;
 
+include_once __DIR__ .'/render.php';
 include_once __DIR__ .'/tag.php';
 include_once __DIR__ .'/attribute.php';
 include_once __DIR__ .'/head.php';
 include_once __DIR__ .'/content.php';
 
-class Html
+class Html extends Render
 {
   private $queue = [];
   private $content = '';

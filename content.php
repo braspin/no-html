@@ -2,16 +2,18 @@
 
 namespace NoHtml;
 
+include_once __DIR__ .'/render.php';
 include_once __DIR__ .'/tag.php';
 include_once __DIR__ .'/attribute.php';
 include_once __DIR__ .'/table.php';
 include_once __DIR__ .'/div.php';
 include_once __DIR__ .'/ul.php';
+include_once __DIR__ .'/ol.php';
 include_once __DIR__ .'/p.php';
 include_once __DIR__ .'/form.php';
 include_once __DIR__ .'/select.php';
 
-class Content
+class Content extends Render
 {
   private $content = '';
   private $queue = [];
@@ -25,7 +27,7 @@ class Content
     return $this;
   }
 
-  public function span(string $content, string $classes = '', array $attrs = [])
+  public function span(string|Render $content, string $classes = '', array $attrs = [])
   {
     $this->queue[] = __FUNCTION__;
     $this->content .= Tag::tag(__FUNCTION__,$content, [
@@ -81,7 +83,7 @@ class Content
     $this->content .= $p->render();
     return $this;
   }
-  public function a(string $content, string $href, string $target, string $classes = '', array $attrs = [])
+  public function a(string|Render $content, string $href, string $target, string $classes = '', array $attrs = [])
   {
     $this->content .= Tag::tag(__FUNCTION__, $content, [
                       Attribute::class_ => $classes,
@@ -90,7 +92,7 @@ class Content
                     ], $attrs);
     return $this;
   }
-  public function b(string $content, string $classes = '', array $attrs = [])
+  public function b(string|Render $content, string $classes = '', array $attrs = [])
   {
     $this->content .= Tag::tag(__FUNCTION__, $content, [
                       Attribute::class_ => $classes,
@@ -115,12 +117,25 @@ class Content
     return $this;
   }
 
-  public function input(string $content, string $type, string $id, string $classes = '', array $attrs = [])
+  public function input(string $content, string $type, string $id, string $name, string $classes = '', array $attrs = [])
   {
     $this->content .= Tag::tag(__FUNCTION__, $content, [
                       Attribute::class_ => $classes,
                       Attribute::type => $type,
                       Attribute::id => $id,
+                      Attribute::name => $name,
+                    ], $attrs);
+    return $this;
+  }
+
+  public function textarea(string $content, string $id, string $name, string $rows, string $cols, string $classes = '', array $attrs = [])
+  {
+    $this->content .= Tag::tag(__FUNCTION__, $content, [
+                      Attribute::class_ => $classes,
+                      Attribute::id => $id,
+                      Attribute::name => $name,
+                      Attribute::cols => $cols,
+                      Attribute::rows => $rows,
                     ], $attrs);
     return $this;
   }
@@ -142,7 +157,7 @@ class Content
     $this->content .= Tag::tag(__FUNCTION__, '', $attrs);
     return $this;
   }
-  public function i(string $content, array $attrs = [])
+  public function i(string|Render $content, array $attrs = [])
   {
     $this->content .= Tag::tag(__FUNCTION__, $content, $attrs);
     return $this;
@@ -167,28 +182,75 @@ class Content
     return $this;
   }
 
-  public function ul(Ul $ul)
+  public function small(string|Render $content, string|Render $classes, array $attrs = [])
+  {
+    $this->content .= Tag::tag(__FUNCTION__, $content, [
+                      Attribute::class_ => $classes
+                    ],$attrs);
+    return $this;
+  }
+
+  public function data(string $value, string $content, array $attrs = [])
+  {
+    $this->content .= Tag::tag(__FUNCTION__, $content, [
+                      Attribute::value => $value
+                    ],$attrs);
+    return $this;
+  }
+
+  public function blockquote(string $cite, string|Render $content, array $attrs = [])
+  {
+    $this->content .= Tag::tag(__FUNCTION__, $content, [
+                      Attribute::cite => $cite
+                    ],$attrs);
+    return $this;
+  }
+
+  public function abbr(string|Render $content, string $classes = '', array $attrs = [])
+  {
+    $this->content .= Tag::tag(__FUNCTION__, $content, [
+                      Attribute::class_ => $classes
+                    ],$attrs);
+    return $this;
+  }
+
+  public function nav(string|Render $content, string $classes = '', array $attrs = []) : Content
+  {
+    $this->content .= Tag::non_closing_tag(__FUNCTION__, [
+                        Attribute::class_ => $classes,
+                      ], $attrs);
+
+    if (is_string($content)) {
+      $this->content .= $content;
+    } else {
+      $this->content .= $content->render();
+    }
+    
+    $this->content .= Tag::close(__FUNCTION__);
+    return $this;
+  }
+
+  public function ul(Ul $ul) : Content
   {
     $this->content .= $ul->render();
     return $this;
   }
 
-  public function table(Table $table)
+  public function ol(Ol $ol) : Content
+  {
+    $this->content .= $ol->render();
+    return $this;
+  }
+
+  public function table(Table $table) : Content
   {
     $this->content .= $table->render();
     return $this;
   }
 
-  public function tag(string $tag, string $content, array $attrs = [])
+  public function unknown(string $tag, string|Render $content, array $attrs = [], array $args = [])
   {
-    $this->content .= Tag::tag($tag, $content, $attrs);
-    return $this;
-  }
-
-  public function non_closing_tag(string $tag, string $content, array $attrs = [])
-  {
-    $this->queue[] = $tag;
-    $this->content .= Tag::non_closing_tag($tag, $attrs);
+    $this->content .= Tag::tag($tag, $content, $attrs, $args);
     return $this;
   }
 
