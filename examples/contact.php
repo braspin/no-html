@@ -1,16 +1,15 @@
 <?php
 
-include_once __DIR__ .'/../src/html.php';
+include_once __DIR__ .'\../src/Braspin/Html.php';
 
 use Braspin\NoHtml\Head as Head;
 use Braspin\NoHtml\Html as Html;
 use Braspin\NoHtml\Content as Content;
 use Braspin\NoHtml\Form as Form;
-use Braspin\NoHtml\Fieldset as Fieldset;
-use Braspin\NoHtml\Render as Render;
 use Braspin\NoHtml\Div as Div;
-use Braspin\NoHtml\Attribute as Attribute;
 
+use Braspin\NoHtml\Util\Attribute as Attribute;
+use Braspin\NoHtml\Util\Render as Render;
 class FormGroup extends Render
 {
   private $div;

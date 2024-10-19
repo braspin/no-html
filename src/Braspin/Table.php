@@ -1,11 +1,15 @@
 <?php namespace Braspin\NoHtml;
 
 
-include_once __DIR__ .'/Render.php';
-include_once __DIR__ .'/Util/Tag.php';
-include_once __DIR__ .'/Util/Attribute.php';
-include_once __DIR__ .'/Thead.php';
-include_once __DIR__ .'/Tbody.php';
+include_once __DIR__ .'\Util\Render.php';
+include_once __DIR__ .'\Util\Tag.php';
+include_once __DIR__ .'\Util\Attribute.php';
+include_once __DIR__ .'\Thead.php';
+include_once __DIR__ .'\Tbody.php';
+
+use Braspin\NoHtml\Util\Attribute as Attribute;
+use Braspin\NoHtml\Util\Tag as Tag;
+use Braspin\NoHtml\Util\Render as Render;
 
 class Table extends Render
 {

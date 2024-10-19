@@ -1,4 +1,4 @@
-<?php namespace Braspin\NoHtml;
+<?php namespace Braspin\NoHtml\Util;
 
 abstract class Render 
 {
