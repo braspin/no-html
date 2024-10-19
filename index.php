@@ -7,6 +7,7 @@ use NoHtml\Html as Html;
 use NoHtml\Content as Content;
 use NoHtml\Div as Div;
 use NoHtml\Select as Select;
+use NoHtml\Form as Form;
 
 $head = new Head();
 $head->title('Teste');
@@ -35,6 +36,16 @@ $select->option("teste", "");
 $select->option("teste2", "teste1");
 
 $body->select($select);
+
+$inputs = new Content();
+$inputs->input('text', '', 'nome');
+$inputs->input('text', '', 'sobrenome');
+$inputs->input('submit', 'Enviar');
+$inputs->button('Enviar', 'submit');
+$form = new Form('index.php?test=nome', 'POST');
+$form->content($inputs);
+
+$body->form($form);
 
 $html = new Html($head);
 echo $html->doctype()

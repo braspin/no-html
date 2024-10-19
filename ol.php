@@ -10,9 +10,11 @@ class Ol extends Render
 {
   private $content = '';
 
-  public function __construct() 
+  public function __construct(string $classes = '', array $attrs = []) 
   {
-    $this->content .= Tag::open(Tag::ol);
+    $this->content .= Tag::non_closing_tag(Tag::ol, [
+                        Attribute::class_ => $classes
+                      ], $attrs);
   }
 
   public function li(string $content, string $classes = '', array $attrs = []) : Ol

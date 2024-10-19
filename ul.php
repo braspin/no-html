@@ -10,9 +10,11 @@ class Ul extends Render
 {
   private $content = '';
 
-  public function __construct() 
+  public function __construct(string $classes = '', array $attrs = []) 
   {
-    $this->content .= Tag::open(Tag::ul);
+    $this->content .= Tag::non_closing_tag(Tag::ul, [
+                        Attribute::class_ => $classes
+                      ], $attrs);
   }
 
   public function li(string|Ul $content, string $classes = '', array $attrs = []) : Ul

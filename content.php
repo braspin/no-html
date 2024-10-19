@@ -107,7 +107,7 @@ class Content extends Render
     return $this;
   }
 
-  public function button(string $content, string $type, string $id, string $classes = '', array $attrs = [])
+  public function button(string $content, string $type, string $id = '', string $classes = '', array $attrs = [])
   {
     $this->content .= Tag::tag(__FUNCTION__, $content, [
                       Attribute::class_ => $classes,
@@ -117,13 +117,15 @@ class Content extends Render
     return $this;
   }
 
-  public function input(string $content, string $type, string $id, string $name, string $classes = '', array $attrs = [])
+  public function input(string $type, string $value, string $placeholder = '', string $name = '', string $id = '', string $classes = '', array $attrs = [])
   {
-    $this->content .= Tag::tag(__FUNCTION__, $content, [
+    $this->content .= Tag::tag(__FUNCTION__, '', [
                       Attribute::class_ => $classes,
                       Attribute::type => $type,
                       Attribute::id => $id,
                       Attribute::name => $name,
+                      Attribute::value => $value,
+                      Attribute::placeholder => $placeholder,
                     ], $attrs);
     return $this;
   }
@@ -158,6 +160,12 @@ class Content extends Render
     return $this;
   }
   public function i(string|Render $content, array $attrs = [])
+  {
+    $this->content .= Tag::tag(__FUNCTION__, $content, $attrs);
+    return $this;
+  }
+
+  public function aside(string|Render $content, array $attrs = [])
   {
     $this->content .= Tag::tag(__FUNCTION__, $content, $attrs);
     return $this;
@@ -245,6 +253,14 @@ class Content extends Render
   public function table(Table $table) : Content
   {
     $this->content .= $table->render();
+    return $this;
+  }
+
+  public function code(string|Render $content, string $classes = '', array $attrs = [])
+  {
+    $this->content .= Tag::tag(__FUNCTION__, $content, [
+                        Attribute::class_ => $classes
+                      ],$attrs);
     return $this;
   }
 

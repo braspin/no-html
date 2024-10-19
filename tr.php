@@ -10,9 +10,11 @@ class Tr extends Render
 {
   private $content = '';
 
-  public function __construct() 
+  public function __construct(string $classes = '', array $attrs = []) 
   {
-    $this->content .= Tag::open(Tag::tr);
+    $this->content .= Tag::non_closing_tag(Tag::tr, [
+                        Attribute::class_ => $classes
+                      ], $attrs);
   }
 
   public function th(string $content, string $scope, string $classes = '', array $attrs = [])

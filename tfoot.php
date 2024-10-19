@@ -9,9 +9,11 @@ include_once __DIR__ .'/tr.php';
 class TFoot extends Render
 {
   private $content = '';
-  public function __construct() 
+  public function __construct(string $classes = '', array $attrs = []) 
   {
-    $this->content = Tag::open(Tag::tfoot);
+    $this->content .= Tag::non_closing_tag(Tag::tfoot, [
+                        Attribute::class_ => $classes
+                      ], $attrs);
   }
 
   public function tr(Tr $tr)

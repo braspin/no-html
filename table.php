@@ -14,9 +14,11 @@ class Table extends Render
   private $tfoot = null;
   private $caption = '';
   private $content = '';
-  public function __construct() 
+  public function __construct(string $classes = '', array $attrs = []) 
   {
-    $this->content = Tag::open(Tag::table);
+    $this->content .= Tag::non_closing_tag(Tag::table, [
+                        Attribute::class_ => $classes
+                      ], $attrs);
   }
 
   public function thread(THead $thead)
