@@ -3,6 +3,7 @@
     "description": "Template engine for PHP without close tag php",
     "type": "library",
     "license": "Apache-2.0",
+    "version": "1.0.0",
     "autoload": {
         "psr-4": {
             "Braspin\\NoHtml\\": "src/"
@@ -14,6 +15,6 @@
             "email": "nandogsilva@hotmail.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "require": {}
 }

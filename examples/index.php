@@ -1,13 +1,13 @@
 <?php
 
-include_once __DIR__ .'/html.php';
+include_once __DIR__ .'/../src/html.php';
 
-use NoHtml\Head as Head;
-use NoHtml\Html as Html;
-use NoHtml\Content as Content;
-use NoHtml\Div as Div;
-use NoHtml\Select as Select;
-use NoHtml\Form as Form;
+use Braspin\NoHtml\Head as Head;
+use Braspin\NoHtml\Html as Html;
+use Braspin\NoHtml\Content as Content;
+use Braspin\NoHtml\Div as Div;
+use Braspin\NoHtml\Select as Select;
+use Braspin\NoHtml\Form as Form;
 
 $head = new Head();
 $head->title('Teste');
