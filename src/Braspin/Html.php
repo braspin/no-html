@@ -1,8 +1,9 @@
 <?php namespace Braspin\NoHtml;
 
 include_once __DIR__ .'/Render.php';
-include_once __DIR__ .'/Tag.php';
-include_once __DIR__ .'/Attribute.php';
+include_once __DIR__ .'/Util/Tag.php';
+include_once __DIR__ .'/Util/Attribute.php';
+
 include_once __DIR__ .'/Head.php';
 include_once __DIR__ .'/Content.php';
 

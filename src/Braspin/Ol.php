@@ -1,8 +1,8 @@
 <?php namespace Braspin\NoHtml;
 
-include_once __DIR__ .'/render.php';
-include_once __DIR__ .'/tag.php';
-include_once __DIR__ .'/attribute.php';
+include_once __DIR__ .'/Render.php';
+include_once __DIR__ .'/Util/Tag.php';
+include_once __DIR__ .'/Util/Attribute.php';
 
 class Ol extends Render
 {
@@ -27,5 +27,9 @@ class Ol extends Render
   {
     $this->content .= Tag::close(Tag::ol);
     return $this->content;
+  }
+  public function echo()
+  {
+    echo $this->render();
   }
 }

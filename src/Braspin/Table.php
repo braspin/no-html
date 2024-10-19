@@ -1,5 +1,12 @@
 <?php namespace Braspin\NoHtml;
 
+
+include_once __DIR__ .'/Render.php';
+include_once __DIR__ .'/Util/Tag.php';
+include_once __DIR__ .'/Util/Attribute.php';
+include_once __DIR__ .'/Thead.php';
+include_once __DIR__ .'/Tbody.php';
+
 class Table extends Render
 {
   private $thead = null;
