@@ -137,4 +137,8 @@ class Head extends Render
                     ], $attrs);
     return $this;
   }
+  public function echo()
+  {
+    echo $this->render();
+  }
 }

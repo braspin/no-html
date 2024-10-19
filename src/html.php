@@ -11,7 +11,6 @@ class Html extends Render
   private $queue = [];
   private $content = '';
   private $head = null;
-
   public function __construct(Head $head = null) {
     $this->head = $head;
   }
@@ -52,6 +51,10 @@ class Html extends Render
     }
 
     return $this->content;
+  }
+  public function echo()
+  {
+    echo $this->render();
   }
 }
 

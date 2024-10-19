@@ -302,4 +302,8 @@ class Content extends Render
     return $this->content;
   }
 
+  public function echo()
+  {
+    echo $this->render();
+  }
 }

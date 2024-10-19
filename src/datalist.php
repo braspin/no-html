@@ -31,4 +31,9 @@ class DataList extends Render
     $this->content .= Tag::close(Tag::datalist);
     return $this->content;
   }
+  public function echo()
+  {
+    echo $this->render();
+  }
+  
 }

@@ -31,4 +31,8 @@ class P extends Render
     $this->content .= Tag::close(Tag::p);
     return $this->content;
   }
+  public function echo()
+  {
+    echo $this->render();
+  }
 }

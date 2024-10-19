@@ -38,4 +38,8 @@ class Ul extends Render
     $this->content .= Tag::close(Tag::ul);
     return $this->content;
   }
+  public function echo()
+  {
+    echo $this->render();
+  }
 }

@@ -28,4 +28,8 @@ class Form extends Render
     $this->content .= Tag::close(Tag::form);
     return $this->content;
   }
+  public function echo()
+  {
+    echo $this->render();
+  }
 }

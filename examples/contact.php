@@ -91,13 +91,10 @@ $form->content($password);
 $form->content($checkme);
 $form->content($button);
 
-$fieldset = new Fieldset('Legend');
-$fieldset->content($form);
-
-$body->fieldset($fieldset);
+$body->form($form);
 
 $html = new Html($head);
-echo $html->doctype()
+$html->doctype()
      ->html('pt-br')
      ->body($body)
-     ->render(); 
+     ->echo(); 
