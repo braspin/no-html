@@ -1,0 +1,19 @@
+{
+    "name": "braspin/no-html",
+    "description": "Template engine for PHP without close tag php",
+    "type": "library",
+    "license": "Apache-2.0",
+    "autoload": {
+        "psr-4": {
+            "Braspin\\NoHtml\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fernando Gomes",
+            "email": "nandogsilva@hotmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
