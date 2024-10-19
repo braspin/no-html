@@ -1,9 +1,8 @@
 <?php namespace Braspin\NoHtml;
 
-include_once __DIR__ .'/render.php';
-include_once __DIR__ .'/tag.php';
-include_once __DIR__ .'/attribute.php';
-include_once __DIR__ .'/content.php';
+include_once __DIR__ .'/Render.php';
+include_once __DIR__ .'/Tag.php';
+include_once __DIR__ .'/Attribute.php';
 
 class P extends Render
 {
@@ -21,7 +20,7 @@ class P extends Render
     $this->content .= $p->render();
   }
 
-  public function content(Content $content)
+  public function content(Render $content)
   {
     $this->content .= $content->render();
   }

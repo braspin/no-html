@@ -1,10 +1,10 @@
 <?php namespace Braspin\NoHtml;
 
-include_once __DIR__ .'/render.php';
-include_once __DIR__ .'/tag.php';
-include_once __DIR__ .'/attribute.php';
-include_once __DIR__ .'/head.php';
-include_once __DIR__ .'/content.php';
+include_once __DIR__ .'/Render.php';
+include_once __DIR__ .'/Tag.php';
+include_once __DIR__ .'/Attribute.php';
+include_once __DIR__ .'/Head.php';
+include_once __DIR__ .'/Content.php';
 
 class Html extends Render
 {

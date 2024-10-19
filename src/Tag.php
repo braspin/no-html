@@ -1,7 +1,8 @@
 <?php namespace Braspin\NoHtml;;
 
-include_once __DIR__ .'/render.php';
-include_once __DIR__ .'/attribute.php';
+include_once __DIR__ .'/Render.php';
+include_once __DIR__ .'/Tag.php';
+include_once __DIR__ .'/Attribute.php';
 
 class Tag
 {

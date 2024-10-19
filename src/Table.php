@@ -1,10 +1,5 @@
 <?php namespace Braspin\NoHtml;
 
-include_once __DIR__ .'/render.php';
-include_once __DIR__ .'/tag.php';
-include_once __DIR__ .'/thead.php';
-include_once __DIR__ .'/tbody.php';
-
 class Table extends Render
 {
   private $thead = null;
@@ -59,6 +54,10 @@ class Table extends Render
 
     $this->content .= Tag::open(Tag::table);
     return $this->content;
+  }
+  public function echo()
+  {
+    echo $this->render();
   }
 
 }

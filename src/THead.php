@@ -1,8 +1,9 @@
 <?php namespace Braspin\NoHtml;
 
-include_once __DIR__ .'/render.php';
-include_once __DIR__ .'/tag.php';
-include_once __DIR__ .'/tr.php';
+include_once __DIR__ .'/Render.php';
+include_once __DIR__ .'/Tag.php';
+include_once __DIR__ .'/Attribute.php';
+include_once __DIR__ .'/Tr.php';
 
 class THead extends Render
 {
@@ -23,5 +24,9 @@ class THead extends Render
   {
     $this->content .= Tag::open(Tag::thead);
     return $this->content;
+  }
+  public function echo()
+  {
+    echo $this->render();
   }
 }

@@ -1,16 +1,16 @@
 <?php namespace Braspin\NoHtml;
 
-include_once __DIR__ .'/render.php';
-include_once __DIR__ .'/tag.php';
-include_once __DIR__ .'/attribute.php';
-include_once __DIR__ .'/table.php';
-include_once __DIR__ .'/div.php';
-include_once __DIR__ .'/ul.php';
-include_once __DIR__ .'/ol.php';
-include_once __DIR__ .'/p.php';
-include_once __DIR__ .'/form.php';
-include_once __DIR__ .'/select.php';
-include_once __DIR__ .'/fieldset.php';
+include_once __DIR__ .'/Render.php';
+include_once __DIR__ .'/Tag.php';
+include_once __DIR__ .'/Attribute.php';
+include_once __DIR__ .'/Table.php';
+include_once __DIR__ .'/Div.php';
+include_once __DIR__ .'/Ul.php';
+include_once __DIR__ .'/Ol.php';
+include_once __DIR__ .'/P.php';
+include_once __DIR__ .'/Form.php';
+include_once __DIR__ .'/Select.php';
+include_once __DIR__ .'/Fieldset.php';
 
 class Content extends Render
 {

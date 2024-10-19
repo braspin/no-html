@@ -1,9 +1,8 @@
 <?php namespace Braspin\NoHtml;
 
-include_once __DIR__ .'/render.php';
-include_once __DIR__ .'/tag.php';
-include_once __DIR__ .'/attribute.php';
-include_once __DIR__ .'/content.php';
+include_once __DIR__ .'/Render.php';
+include_once __DIR__ .'/Tag.php';
+include_once __DIR__ .'/Attribute.php';
 
 class Div extends Render
 {
@@ -21,7 +20,7 @@ class Div extends Render
     $this->content .= $div->render();
   }
 
-  public function content(Content $content)
+  public function content(Render $content)
   {
     $this->content .= $content->render();
   }
@@ -30,5 +29,9 @@ class Div extends Render
   {
     $this->content .= Tag::close(Tag::div);
     return $this->content;
+  }
+  public function echo()
+  {
+    echo $this->render();
   }
 }

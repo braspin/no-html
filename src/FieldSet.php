@@ -1,8 +1,8 @@
 <?php namespace Braspin\NoHtml;
 
-include_once __DIR__ .'/render.php';
-include_once __DIR__ .'/tag.php';
-include_once __DIR__ .'/attribute.php';
+include_once __DIR__ .'/Render.php';
+include_once __DIR__ .'/Tag.php';
+include_once __DIR__ .'/Attribute.php';
 
 class FieldSet extends Render
 {
@@ -30,5 +30,9 @@ class FieldSet extends Render
   {
     $this->content .= Tag::close(Tag::fieldset);
     return $this->content;
+  }
+  public function echo()
+  {
+    echo $this->render();
   }
 }
