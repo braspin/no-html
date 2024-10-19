@@ -10,11 +10,13 @@ include_once __DIR__ .'/ol.php';
 include_once __DIR__ .'/p.php';
 include_once __DIR__ .'/form.php';
 include_once __DIR__ .'/select.php';
+include_once __DIR__ .'/fieldset.php';
 
 class Content extends Render
 {
   private $content = '';
   private $queue = [];
+  private $scripts = [];
   public function __construct() 
   {
   }
@@ -105,7 +107,7 @@ class Content extends Render
     return $this;
   }
 
-  public function button(string $content, string $type, string $id = '', string $classes = '', array $attrs = [])
+  public function button(string $content, string $type, string $classes = '', string $id = '', array $attrs = [])
   {
     $this->content .= Tag::tag(__FUNCTION__, $content, [
                       Attribute::class_ => $classes,
@@ -137,6 +139,12 @@ class Content extends Render
                       Attribute::cols => $cols,
                       Attribute::rows => $rows,
                     ], $attrs);
+    return $this;
+  }
+
+  public function fieldset(FieldSet $fieldset)
+  {
+    $this->content .= $fieldset->render();
     return $this;
   }
 
@@ -179,7 +187,7 @@ class Content extends Render
     return $this;
   }
 
-  public function label(string $for, string $content, string $classes, array $attrs = [])
+  public function label(string $for, string $content, string $classes = '', array $attrs = [])
   {
     $this->content .= Tag::tag(__FUNCTION__, $content, [
                       Attribute::for => $for,
@@ -188,7 +196,7 @@ class Content extends Render
     return $this;
   }
 
-  public function small(string|Render $content, string|Render $classes, array $attrs = [])
+  public function small(string|Render $content, string $classes, array $attrs = [])
   {
     $this->content .= Tag::tag(__FUNCTION__, $content, [
                       Attribute::class_ => $classes
@@ -268,12 +276,27 @@ class Content extends Render
     return $this;
   }
 
+  public function script(string $src, bool $async = false, string $id = '', array $attrs = []) : Content
+  {
+    $this->scripts[] = Tag::tag(Tag::script, '',  [
+                        Attribute::type => 'text/javascript',
+                        Attribute::id => $id,
+                        Attribute::src => $src,
+                      ], $attrs, $async ?? 'async');
+    return $this;
+  }
+
   public function render()
   {
     $index = count($this->queue);
 
     while($index) {
       $this->content .= Tag::close($this->queue[--$index]);
+    }
+
+    foreach($this->scripts as $row => $script)
+    {
+      $this->content .= $script;
     }
 
     return $this->content;

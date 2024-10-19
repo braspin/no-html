@@ -18,7 +18,7 @@ class Form extends Render
                     $attrs);
   }
 
-  public function content(Content $content)
+  public function content(Render $content)
   {
     $this->content .= $content->render();
   }

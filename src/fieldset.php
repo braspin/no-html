@@ -20,11 +20,9 @@ class FieldSet extends Render
     }
   }
 
-  public function li(string $content, string $classes = '', array $attrs = []) : FieldSet
+  public function content(Render $content, string $classes = '', array $attrs = []) : FieldSet
   {
-    $this->content .= Tag::tag(__FUNCTION__, $content,[
-                    Attribute::class_ => $classes,
-                  ], $attrs);
+    $this->content .= $content->render();
     return $this;
   }
 
