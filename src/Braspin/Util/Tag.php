@@ -110,6 +110,7 @@ class Tag
   const spacer = "spacer";
   const span = "span";
   const strike = "strike";
+  const style = "style";
   const strong = "strong";
   const tagname = "tagname";
   const sub = "sub";

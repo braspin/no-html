@@ -15,6 +15,7 @@ class Head extends Render
   private $metas = [];
   private $links = [];
   private $scripts = [];
+  private $styles = [];
 
   public function __construct() {
     $this->metas = [];
@@ -27,19 +28,24 @@ class Head extends Render
 
     $content .= Tag::tag(Attribute::title, $this->title);
 
-    foreach($this->metas as $row => $meta)
+    foreach($this->metas as $meta)
     {
       $content .= $meta;
     }
 
-    foreach($this->links as $row => $link)
+    foreach($this->links as $link)
     {
       $content .= $link;
     }
 
-    foreach($this->scripts as $row => $script)
+    foreach($this->scripts as $script)
     {
       $content .= $script;
+    }
+
+    foreach($this->styles as $style)
+    {
+      $content .= $style;
     }
 
     $content .= Tag::close(Tag::head);
@@ -74,6 +80,11 @@ class Head extends Render
     );
 
     return $this;
+  }
+
+  public function style(string $content)
+  {
+    $this->styles[] = Tag::tag(Tag::style, $content);
   }
 
   public function icon(string $type, string $size, string $href, array $attrs= []) : Head
