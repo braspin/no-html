@@ -131,11 +131,11 @@ class Attribute
     {
       if(gettype($value) === "array")
       {
-        $result .= self::add_attr($attr, key($value), current($value)) . ' ';
+        $result .= self::add_attr($attr, key($value), current($value));
       }
       else
       {
-        $result .= self::add_attr($attr, $value) . ' ';
+        $result .= self::add_attr($attr, $value);
       }
     }
     
@@ -151,7 +151,7 @@ class Attribute
       }
     }
 
-    return $attr . '="' . $values . '"';
+    return ' ' . $attr . '="' . $values . '"';
   }
 
 }

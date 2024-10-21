@@ -15,9 +15,15 @@ class Html extends Render
 {
   private $queue = [];
   private $content = '';
+  private $exp = -1;
+  private $endline = false;
+  private $full_path = '';
   private $head = null;
-  public function __construct(Head $head = null) {
+  public function __construct(Head $head = null, string $path = '', string $filename = '', int $exp = -1) {
     $this->head = $head;
+    $concat = str_ends_with($path, '/') ? '' : '/';
+    $this->full_path = $path . $concat . $filename;
+    $this->exp = $exp;
   }
   
   public function doctype()
@@ -61,5 +67,36 @@ class Html extends Render
   {
     echo $this->render();
   }
+
+  public function save(bool $force = false) : void
+  {
+    $replace = false;
+
+    if($this->exp > -1) 
+    {
+      if (file_exists($this->full_path))
+      {
+        $filemtime = filemtime($this->full_path);
+        if(!$filemtime or (time() - $filemtime >= $this->exp))
+        {
+          $replace = true;
+        }
+      }
+      else
+      {
+        $replace = true;
+      }
+    }
+
+    $replace |= $force;
+
+    if($replace)
+    {
+      $file = fopen($this->full_path, "w") or die("Unable to open file!");
+      fwrite($file, $this->content);
+      fclose($file);
+    }
+  }
+
 }
 

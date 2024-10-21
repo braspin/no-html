@@ -5,6 +5,7 @@ include_once __DIR__ .'/Attribute.php';
 
 class Tag
 {
+  public static $endline = false;
   const doctype = "!DOCTYPE html";
   const abbr = "abbr";
   const acronym = "acronym";
@@ -137,25 +138,24 @@ class Tag
 
   public static function open(string $name)
   {
-    return '<'. $name . '>';
+    return '<'. $name . '>' . (self::$endline ? PHP_EOL : '');;
   }
 
   public static function close(string $name)
   {
-    return '</'. $name . '>';
+    return '</'. $name . '>' . (self::$endline ? PHP_EOL : '');;
   }
 
   public static function non_closing_tag(string $name, array $attrs = [], array $args = [], string $custom = '')
   {
     $result = '<'
               . $name
-              . ' '
               . Attribute::add_attrs($attrs)
-              . ' '
               . Attribute::add_attrs($args)
-              . ' '
-              . $custom
-              . '>';
+              . (empty($custom) ? '' : ' ' . $custom)
+              . '>' 
+              . (self::$endline ? PHP_EOL : '');
+
     return $result;
   }
 
@@ -163,12 +163,9 @@ class Tag
   {
     $result = '<'
               . $name
-              . ' '
               . Attribute::add_attrs($attrs)
-              . ' '
               . Attribute::add_attrs($args)
-              . ' '
-              . $custom
+              . (empty($custom) ? '' : ' ' . $custom)
               . '>';
 
     if(is_string($content)){
@@ -178,6 +175,7 @@ class Tag
     }
 
     $result .= self::close($name);
+
     return $result;
   }
 }
