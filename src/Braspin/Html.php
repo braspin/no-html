@@ -87,6 +87,10 @@ class Html extends Render
         $replace = true;
       }
     }
+    else
+    {
+      $replace = true;
+    }
 
     $replace |= $force;
 
