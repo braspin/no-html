@@ -25,7 +25,7 @@ class Table extends Render
                       ], $attrs);
   }
 
-  public function thread(THead $thead)
+  public function thead(THead $thead)
   {
     $this->thead = $thead;
   }

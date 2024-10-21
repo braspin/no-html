@@ -121,7 +121,13 @@ class Content extends Render
     return $this;
   }
 
-  public function input(string $type, string $value, string $placeholder = '', string $name = '', string $id = '', string $classes = '', array $attrs = [])
+  public function hidden(string $value, string $name, string $id, array $attrs = [])
+  {
+    $this->content .= $this->input('hidden', $value, '', $name, $id, '', $attrs);
+    return $this;
+  }
+
+  public function input(string $type, string $value, string $placeholder = '', string $name = '', string $id = '', string $classes = '', array $attrs = [], string $custom = '')
   {
     $this->content .= Tag::tag(__FUNCTION__, '', [
                       Attribute::class_ => $classes,
@@ -130,7 +136,7 @@ class Content extends Render
                       Attribute::name => $name,
                       Attribute::value => $value,
                       Attribute::placeholder => $placeholder,
-                    ], $attrs);
+                    ], $attrs, $custom);
     return $this;
   }
 

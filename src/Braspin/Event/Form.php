@@ -2,5 +2,7 @@
 
 class Form 
 {
-  const onafterprint = 'onafterprint';
+  const onkeydown = 'onkeydown';
+  const onkeypress = 'onkeypress';
+  const onkeyup = 'onkeyup';
 }
